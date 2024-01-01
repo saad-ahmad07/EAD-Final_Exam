@@ -3,12 +3,26 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
+import Form from './components/form';
+import { BrowserRouter,Route,Routes } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
 import Main from './components/main';
+import Appointment from './components/appointment';
+import AddAppointment from './components/addAppointment';
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+
 root.render(
   <React.StrictMode>
-    <Main />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Main />} />
+        <Route path="/addSlot" element={<Form />} />
+        <Route path="/addAppointment" element={<AddAppointment />} />
+      </Routes> 
+    </BrowserRouter>
+
+    {/* <Main /> */}
   </React.StrictMode>
 );
 

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Slots from "./slots";
 import Appointment from "./appointment";
 import  axios  from 'axios';
+import { Outlet,Link } from "react-router-dom";
 function Main() {
     const [slots,setSlots] = useState([])
     const [appoint,setApp] = useState([])
@@ -25,7 +26,7 @@ function Main() {
                 <Slots key={slot._id} obj={slot} className="m-4 p-4"/>
             ))
         }
-       <button className="btn btn-primary">Add Time Slot</button>
+       <Link to="/addSlot" className="btn btn-primary">Add</Link> 
       </div>
 
       <div className="m-3">
@@ -37,8 +38,9 @@ function Main() {
         }
        
       </div> 
-
+      <Outlet/>
     </div>
+    
   );
 }
 

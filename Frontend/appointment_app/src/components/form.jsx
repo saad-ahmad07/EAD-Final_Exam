@@ -1,28 +1,35 @@
 import React from 'react'
 import { Formik, useFormik } from 'formik';
-
+import { useState } from 'react';
+import axios from 'axios';
 function Form() {
+
    const formik =  useFormik({
         initialValues: {
-            name: "",
-            email: ""
+            startTime: "",
+            endTime: ""
         },
         onSubmit: (data) =>{
-            console.log(data);
+            axios.post("http://localhost:5000/home",data).then(data =>  console.log(data)).catch(err => console.log(err))
+            // console.log(data);
         }
+
     })
   return (
-    <div>
+    <div className='m-5 p-4'>
 
-        <form action="">
-            <label>Name:</label>
-            <input name="name" type="text" value={formik.values.name}/>
+        <h3>Add Time Slot</h3>
+        <form onSubmit={formik.handleSubmit}>
+            <label>Start Time:</label>
+            <input name="startTime" type="text" value={formik.values.start} onChange={formik.handleChange}/>
 
-            <label>Email:</label>
-            <input name="email" type="email" value={formik.values.email}/>
+            <label>End Time:</label>
+            <input name="endTime" type="text" value={formik.values.end} onChange={formik.handleChange}/>
+
+            <input type="submit" />
         </form>
     </div>
   )
 }
 
-export default form
+export default Form
