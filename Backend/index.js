@@ -21,7 +21,15 @@ app.get("/home/app",(req,res)=>{ // Fetches all the appointments
     Appointment.find().then(appoint => res.json(appoint)).catch(err => res.json(err))
 })
 
+app.post("/home",(req,res)=>{ // Adds Slot to the Collection
+    const {body} = req;
+    Slots.create(body).then(obj => res.json(obj)).catch(err => res.json(err))
+})
 
+app.post("/home/app",(req,res)=>{// Adds Appointments to the Collection
+    const {body} = req;
+    Appointment.create(body).then(obj => res.json(obj)).catch(err => res.json(err))
+})
 
 app.listen(5000,()=>{
     console.log("Listening at 5000....");
